@@ -50,6 +50,14 @@ namespace GoogleARCore.HelloAR
         /// </summary>
         public GameObject SearchingForPlaneUI;
 
+        // AudioClips - Question, Positive, Negative Wae Prompts
+        public AudioClip douknowdawae;
+        public AudioClip udonotnodawae;
+        public AudioClip thisisdawae;
+
+        // Initialize the AudioSource
+        public AudioSource source;
+
         /// <summary>
         /// A list to hold new planes ARCore began tracking in the current frame. This object is used across
         /// the application to avoid per-frame allocations.
@@ -133,6 +141,8 @@ namespace GoogleARCore.HelloAR
                 // Create an anchor to allow ARCore to track the hitpoint as understanding of the physical
                 // world evolves.
                 var anchor = hit.Trackable.CreateAnchor(hit.Pose);
+                // Play Positive Wae Clip
+                source.PlayOneShot(thisisdawae);
 
                 // Andy should look at the camera but still be flush with the plane.
                 andyObject.transform.LookAt(FirstPersonCamera.transform);
